@@ -89,7 +89,7 @@ def load_config():
     try:
         with open(config_file) as f:
             config = json.load(f)
-    except FileNotFoundError:
+    except IOError:
         config = default_settings
         with open(config_file, 'w') as f:
             json.dump(config, f, indent=2)
