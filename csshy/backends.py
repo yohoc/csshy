@@ -14,9 +14,9 @@ terminal_names = (
 
 
 def execute(*args):
-    exec = subprocess.Popen(args, stdout=subprocess.PIPE)
-    exec.wait()
-    return exec
+    exec_t= subprocess.Popen(args, stdout=subprocess.PIPE)
+    exec_t.wait()
+    return exec_t
 
 
 def guess_from_text(text):
@@ -30,17 +30,17 @@ def guess_default_terminal():
 
     # Guess when running gnome
     if "gnome" in active_desktop or "unity" in active_desktop:
-        exec = execute("gsettings", "get", "org.gnome.desktop.default-applications.terminal", "exec")
-        guess = guess_from_text(exec.stdout.read().decode('utf-8'))
+        exec_t= execute("gsettings", "get", "org.gnome.desktop.default-applications.terminal", "exec")
+        guess = guess_from_text(exec_t.stdout.read().decode('utf-8'))
         if guess:
             return guess
 
     # TODO Guessing in other DEs
 
     # Guess default terminal set on system (Debian like only)
-    exec = execute("update-alternatives", "--query", "x-terminal-emulator")
-    if exec.returncode == 0:
-        for line in exec.stdout:
+    exec_t= execute("update-alternatives", "--query", "x-terminal-emulator")
+    if exec_t.returncode == 0:
+        for line in exec_t.stdout:
             if line.startswith(b"Value:"):
                 guess = guess_from_text(line.decode('utf-8'))
                 if guess:
