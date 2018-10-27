@@ -1,3 +1,6 @@
+# Description
+This fork is to make csshy to support python 2.7
+---
 # CSSHY - Alpha Version
 
 Imporved ClusterSSH for modern terminals like terminator and tilix, to manage a cluster of nodes through ssh connections
